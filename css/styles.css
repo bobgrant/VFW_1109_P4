@@ -19,7 +19,12 @@ fieldset#mainMenu {
 }
 ul#buttons {
     list-style-type: none;
-    margin-left: -63px;
+    margin-left: -59px;
+    width: 297px;
+}
+
+li {
+    margin-bottom: -5px;
 }
 
 p#message {
