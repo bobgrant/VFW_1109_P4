@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<!--	
+		Robert H. Grant
+		VFW :: 1109 :: P3
+		Full Sail Univeristy
+  Instructor: Chad Gibson
+  FIlename: additem.html
+-->
+
+<html lang="">
+	
+<head>
+    <title>Video Store Outfitters</title>
+    <meta charset="utf-8">
+    <meta name = "description" content="Video store inventory"/>
+    <meta name = "keywords" content ="movie, dvd, theatre, film, video, pg, pg13, r, g" />
+    <meta name ="robots" content = "index, follow" /> <!-- Search engines index this site and follow links -->
+    <link href = "css/styles.css" rel = "stylesheet" type = "text/css" />
+</head>
+	
+<body>
+
+			<!-- ==============================================================================================
+				     ADD ITEM FIELDSET
+				    ============================================================================================== -->
+									
+				<fieldset id="main">   
+        <!-- Header Tags (This appears on gradient graphic -->
+       <header id="titlebar">
+		          <h1>PURCHASE DVD</h1>
+		     </header>
+		
+		     <!-- Begin interaction area where user chooses movie information -->
+	             
+		     <!-- Legend is turned off via CSS -->
+		     <legend id="legMovie">Movie Information:</legend>
+			
+        <!-- Main form and save data link -->
+        <form action="JavaScript:saveData()" method="post" name="paper" id="paper">
+									
+            <!-- (Category) - ComboBox -->
+            <label for="category" id="labelCategory">Category</label><br/>
+            <select id="category" name="category"
+                onfocus=backColor("category","#1a3402","#b0d1b3")
+                onblur=backColor("category","white","black") >
+            </select><br/>
+            <br/>
+				
+            <!-- (MPAA Classification) - ComboBox -->
+            <label for="mpaaClassification">MPAA Classification:</label>
+            <select id ="mpaaClassification" name="mpaaClassification"
+                onfocus=backColor("mpaaClassification","#1a3402","#b0d1b3")
+                onblur=backColor("mpaaClassification","white","black") >
+            </select><br/>
+            <br/>
+
+            <!-- (Movie Title) - Textbox -->
+            <!-- Clears when it gets focus in CSS -->
+            <label for="movieTitle">Movie Title</label>
+            <input type="text" size="54" value="Enter the title of the movie."
+                id="movieTitle" name="movieTitle"
+                onfocus="backColor('movieTitle','#1a3402','#b0d1b3'); deleteValue('movieTitle');"
+                onblur="backColor('movieTitle','white','black');" maxlength="22";
+            /><br />
+            <br/>
+  				
+            <!-- (Copies Needed) - Range -->
+            <label for="copiesNeeded" id="labelCopies">Copies: 1</label>
+            <input type="range" min="1" max="10" value="1" id="copiesNeeded"
+                onchange=updateCopies() /> <br />
+            <br/>
+  				
+            <!-- (Was In Theaters) - Checkbox -->
+            <label for="wasInTheaters">Was In Theaters:</label>
+            <input type ="checkbox" name="wasInTheaters" id="wasInTheaters"	/><br/>
+            <!-- <br/><br/> -->
+  							
+            <!-- (Release Date) - dateBox -->
+            <label for="releaseDate">Purchase Date:</label>
+            <input type ="date" value="2011/09/03" id="releaseDate" name="releaseDate"
+                onfocus=backColor("releaseDate","#1a3402","#b0d1b3")
+                onblur='backColor("releaseDate","white","black");'/><br/>
+            <br/>
+  							
+            <!-- (Comments) - Textarea -->
+            <label for="tcomment">Shipping Instructions:</label>
+            <textarea rows="5" cols="39" name="tcomment" id="tcomment"
+                onfocus="backColor('tcomment','#1a3402','#b0d1b3'); deleteValue('tcomment');"
+                onblur=backColor("tcomment","white","black")
+                >If not home specify preference for leaving package such as 'on rear porch' or 'do not leave'.</textarea>
+ 	 			
+            <!-- (Submit button) - Button -->
+            <p id="submitButton">
+            <input type="submit" value="Add DVD to cart" id="subButton" name="subButton" />
+            </p>				
+        </form>
+			
+            <!-- (Clear local storage) - Hyperlink -->
+            <a href="JavaScript:clearStorage()" id="clearLocal">Clear local storage</a>
+    </fieldset>
+				
+				<!-- ==============================================================================================
+				     RECEIPT FIELDSET
+				     ============================================================================================== -->
+				
+				<fieldset id="receipt">
+						<div id="receiptHeader">
+										<p><br/>Bob's DVD Superstore<br/>Jonesport, Maine<br/>(207) 598-6882<br/><hr align="center" width = "80%" /></p>
+										<p id="successful" >YOUR ORDER WAS SUCCESSFULLY PLACED</p>
+						</div>
+						<ul class = "receiptList">
+										<li id="receiptCategory">Category goes here</li>
+										<li id="receiptMpaaClassification">MPAA Classification goes here</li>
+										<li id="receiptMovieTitle">Movie Title Goes here</li>
+										<li id="receiptCopiesNeeded">Copies needed goes here</li><br/>
+										<li id="receiptWasInTheaters">Was In Theaters goes here</li><br/>
+										<li id="receiptReleaseDate">Release Data Goes Here</li><br/><br/>
+										<li id="receiptComments">Shipping Instructions Go here</li><br/>
+										<li id="receiptImage"><p id="receiptGraphic"><img id="dvdPic" src="" alt="Description here" /></p><br/>
+										<li id="keepReceipt"><p id="keepReceipt">Keep this receipt for your records</p></li>
+						</ul>
+				</fieldset>
+    
+				<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

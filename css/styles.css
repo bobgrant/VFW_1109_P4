@@ -1,0 +1,201 @@
+/*
+	Robert H. Grant
+	VFW :: 1108 :: P3
+	Full Sail University - Online
+	Instructor: Chad Gibson
+	Filename: style.css
+                                                                           */
+
+
+/* INDEX.HTML: Menu items*/
+fieldset#mainMenu {
+    margin-left: -10px;
+    margin-top: -10px;
+    width: 300px;
+    /* background: url(../img/whatever.jpg); */
+    overflow: hidden;
+}
+ul#buttons {
+    list-style-type: none;
+    margin-left: -63px;
+}
+
+p#message {
+    margin-left: 10px;
+    margin-right: -10px;
+    margin-bottom: -16px;
+    height: 100px;
+    width: 320px;
+    font-size: 15px;
+    font-family: Times, Ariel;
+}
+
+div#msgImage {
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: -20px;
+    background: url(../img/warehouse.jpg);
+}
+
+
+
+
+
+
+
+
+
+
+/* Set the background image and parameters of the fieldset */
+fieldset#main {                  
+    width:300px;            
+    background: url(../img/background.jpg);
+    overflow: hidden;                      
+} /* END fieldset main */
+
+fieldset#receipt {
+    width: 306px;
+    background: url(../img/receipt.jpg);
+    overflow: hidden;
+} /* END fieldset second */
+
+/* Setup header with graphic */
+header#titlebar {                          
+    font-size: 12px;                       
+    height: 50px;                          
+    width: 325px;                          
+    margin-left: -14px;                    
+    margin-bottom: 10px;                   
+    margin-top: -15px;                     
+    border: 1px solid black;               
+    color: #1a3402;                        
+    background-image:url('../img/button.jpg');
+    background-repeat:no-repeat;              
+    text-align:center;                        
+} /* END header#titlebar */ 
+
+
+
+/* Set the width and cursor pointer for the range slider */
+input#copiesNeeded {                          
+    width: 290px;
+    cursor: move;
+} /* END input#copiesNeeded */
+
+
+
+/* Set the border and cursor pointer for the checkbox. */
+input#wasInTheaters {                         
+    outline: double;                          
+    
+    /* Hand pointer for cursor */
+    cursor: pointer; 
+} /* END input#wasInTheaters */
+
+
+
+/* Make all labels use the following settings */
+label {              
+    font-family: Arial, Times, Helvetica;
+    color: #1a3402;
+} /* END label */
+
+
+
+body {               
+    margin-top: 40px;
+    margin-left: 10px;
+} /* END body */
+
+
+
+/* Hide the legend */
+legend#legMovie {    
+    display:none;    
+} /* END legend#legMovie */
+
+
+/* Set hyperlink colors LoVe HAte */
+a:link {color: #1a3402;}
+a:visited{color: black;}
+a:hover{color: #55812d;}
+a:active{color: #faf104;}
+} /* END a */
+
+
+/* Make all imput fields see through for uniqueness */
+input {
+    opacity:0.8;     
+} /* END input */
+
+/* Center the submit button */
+p#submitButton {
+    text-align: center;
+} /* END p#submitButton */
+
+
+/* Set shipping box parameters. */
+textarea#tcomment {  
+    height: 80px;
+    margin-bottom: 2px;
+} /* END textarea#tcomment */
+
+
+/* Hide the clear local link until actual data is stored. */
+a#clearLocal {       
+        visibility: hidden; 
+} /* END a#clearlocal */
+
+/* Setup release date parameters. */
+input#releaseDate {
+    margin-top: 20px;
+    width: 90px;
+} /* END input#releaseDate */
+
+/* ====================================================================================
+   RECEIPT CONTROL
+   ==================================================================================== -->
+
+/* Setup the receipt, but keep it hidden until needed. */
+#receipt {
+    visibility: hidden; 
+    background-image: url('../img/receipt.jpg');
+    font-family: courier;
+    font-size: 12px;
+}
+
+
+/* Bobs DVD Superstore */
+#receiptHeader {
+    text-align: center;
+    color: black;
+    font-size: 10px;
+}
+
+
+/* Put Your order was successfully placed on receipt in bold red lettering */
+p#successful {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    color: red;
+}
+
+
+/* Hides bullets from the <ul> on the receipt */
+.receiptList {
+    list-style-type: none;
+    margin-left: -10px;
+}
+
+
+/* Centers graphic on receipt */
+#receiptGraphic {
+    margin-left: -30px;
+    font-family: courier;
+    text-align: center;
+}
+
+#keepReceipt {
+    color: #646865;
+}
