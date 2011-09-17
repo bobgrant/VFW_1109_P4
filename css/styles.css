@@ -10,11 +10,12 @@
 /* INDEX.HTML: Menu items*/
 
 
-fieldset#mainMenu {
+div#mainMenu {
     margin-left: -10px;
     margin-top: -10px;
+    height: 130px;
     width: 297px;
-    /* background: url(../img/whatever.jpg); */
+    background: url(../img/topImage.jpg);
     overflow: hidden;
 }
 ul#buttons {
@@ -36,15 +37,10 @@ p#message {
     padding-top:33px;
     font-size: 15px;
     font-family: Times, Ariel;
-    color: black;
 }
 
 div#msgImage {
-    margin-left: -20px;
-    margin-right: -20px;
-    margin-top: -20px;
-    width: 380px;
-    background: url(../img/building.jpg);
+    background-color: white;
 }
 
 
@@ -112,7 +108,7 @@ label {
 
 
 body {               
-    margin-top: 40px;
+    margin-top: 0px;
     margin-left: 10px;
 } /* END body */
 
