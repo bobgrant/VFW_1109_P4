@@ -59,6 +59,7 @@ div#menuEnd {
     background: url(../img/baseImage.jpg);
 }
 
+/* BUTTONS ON INDEX.HTML */
 img#downloadCat {
     margin-top: -5px;
 }
@@ -72,6 +73,14 @@ img#orderStat {
     margin-left: 1px;
 }
 
+img#settings {
+    margin-top: -4px;
+}
+
+img#signout {
+    margin-top: -4px;
+}
+/* END BUTTONS ON INDEX.HTML */
 
 
 /* Set the background image and parameters of the fieldset */
