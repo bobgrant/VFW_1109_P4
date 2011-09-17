@@ -88,7 +88,8 @@ img#signout {
 
 /* Set the background image and parameters of the fieldset */
 fieldset#main {                  
-    width:300px;            
+    width:300px;
+    margin-left: -10px;
     background: url(../img/background.jpg);
     overflow: hidden;                      
 } /* END fieldset main */
@@ -198,7 +199,8 @@ input#releaseDate {
 
 /* Setup the receipt, but keep it hidden until needed. */
 #receipt {
-    visibility: hidden; 
+    visibility: hidden;
+    margin-left: -12px;
     background-image: url('../img/receipt.jpg');
     font-family: courier;
     font-size: 12px;
@@ -225,7 +227,6 @@ p#successful {
 /* Hides bullets from the <ul> on the receipt */
 .receiptList {
     list-style-type: none;
-    margin-left: -10px;
 }
 
 
@@ -238,4 +239,5 @@ p#successful {
 
 #keepReceipt {
     color: #646865;
+    margin-left: -5px;
 }
