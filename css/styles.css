@@ -9,6 +9,7 @@
 
 /* INDEX.HTML: Menu items*/
 
+
 /* Puts top image where it needs to be */
 div#mainMenu {
     margin-left: -10px;
@@ -21,11 +22,24 @@ div#mainMenu {
     overflow: hidden;
 }
 
+img#headerImage {
+    margin-top: 20px;
+    border: 1px solid white;
+    opacity: 0.6;
+}
+
+/* Center companyMessage on div#mainMenu above */
+p#companyMessage {
+    color: white;
+    margin-top: 2px;
+    margin-left: 10px;
+}
+
 /* SETS middleImage where it needs to be in ul#buttons */
 ul#buttons {
     list-style-type: none;
     height: 469px;
-    margin-top: 0px;
+    margin-top: 1px;
     margin-left: -10px;
     width: 328px;
     background: url(../img/middleImage.jpg);
@@ -45,12 +59,18 @@ div#menuEnd {
     background: url(../img/baseImage.jpg);
 }
 
+img#downloadCat {
+    margin-top: -5px;
+}
 
+img#requestCat {
+    margin-top: -4px;
+}
 
-
-
-
-
+img#orderStat {
+    margin-top: -4px;
+    margin-left: 1px;
+}
 
 
 
