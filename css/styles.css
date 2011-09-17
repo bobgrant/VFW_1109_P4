@@ -69,16 +69,16 @@ img#requestCat {
 }
 
 img#orderStat {
-    margin-top: -4px;
-    margin-left: 1px;
+    margin-top: -1px;
 }
 
 img#settings {
     margin-top: -4px;
+    margin-left: -1px;
 }
 
 img#signout {
-    margin-top: -4px;
+    margin-top: -7px;
 }
 /* END BUTTONS ON INDEX.HTML */
 
