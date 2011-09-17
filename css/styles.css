@@ -9,6 +9,9 @@
 
 /* INDEX.HTML: Menu items*/
 
+body#index {
+    height: 400px;
+}
 
 /* Puts top image where it needs to be */
 div#mainMenu {
