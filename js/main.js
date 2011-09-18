@@ -1,7 +1,7 @@
 /*
 
 Robert H. Grant
-VFW :: 1109 :: P3
+VFW :: 1109 :: P4
 Instructor: Chad Gibson
 Full Sail University
 Filename: main.js
@@ -133,6 +133,18 @@ function saveData(){
     var wasInTheaters       = document.getElementById('wasInTheaters').value;
     var releaseDate         = document.getElementById('releaseDate').value;
     var tComment            = document.getElementById('tcomment').value;
+    var myDate              = new Date();
+    var myYear              = myDate.getFullYear();
+    var myMonth             = myDate.getMonth();
+    var myDay               = myDate.getDate();
+    var myHours             = myDate.getHours();
+    var myMinutes           = myDate.getMinutes();
+    var mySeconds           = myDate.getSeconds();
+    // Generate unique key based on YYYYMMDDHHMMSS
+    var myKey               = myYear + "" + myMonth + "" + myDay + "" + myHours + "" + myMinutes + "" + mySeconds;
+    // Put all data saved from form into array to be saved all at once.
+    var myArray             = [category,mpaaClassification,movieTitle,copiesNeeded,wasInTheaters,releaseDate,tComment];
+    
     
     // Check to see if user changed shipping instructions from the default and if not
     // confirm they want them the way they are.
@@ -143,7 +155,12 @@ function saveData(){
             tComment = prompt("Please enter shipping instructions:");
         } // END if !response
     } // END if tcomment
-    
+  
+  
+// =================================================================================================================
+// V A L I D A T E    D A T A   F O R    P R O P E R    F O R M A T
+// =================================================================================================================
+
     // Check data in form
     var department  = ["movieTitle","releaseDate"];
     var deptKey     = [/^([0-9a-zA-Z\s\.\!])+([0-9a-zA-Z\s\.\!])*$/,/^[2-9][0-9]{3}[\/-\\][0-9]{2}[\/-\\][0-9]{2}$/];    
@@ -170,27 +187,78 @@ function saveData(){
             i--;
         } // END if deptKey
     } // END for i=2
+    
+ // =================================================================================================================
+//  S A V E   D A T A   T O   L O C A L   S T O R A G E   A N D   D I S P L A Y   I N   N E W   D I V   T A G. 
+// =================================================================================================================   
 
     //Save data to local storage.
-    localStorage.setItem('storeCategory',category);
-    localStorage.setItem('storeMpaaClassification',mpaaClassification);
-    localStorage.setItem('storeMovieTitle',document.forms["paper"][department[0]].value);
-    localStorage.setItem('storeCopiesNeeded',copiesNeeded);
-    localStorage.setItem('storeWasInTheaters',wasInTheaters);
-    localStorage.setItem('storeReleaseDate',document.forms["paper"][department[1]].value);
-    localStorage.setItem('storeTComment',tComment);
+    //Calculate YYYY:MM:DD:HH:MM:SS to generage key and then put everything into an array.
+ 
+    localStorage.setItem(myKey,myArray);
 
-    // Show Clear local storage link at bottom of form.
-    document.getElementById('clearLocal').style.visibility = "visible";
-    // Hide entire form leaving Clear local storage link the only available option on the app.
-    document.getElementById('paper').style.display = "none";
-    // Make receipt visible
-    document.getElementById('receipt').style.visibility = "visible";
+    // Show fieldset#Receipt so that saved entries show up.
+    document.getElementById('receipt').style.display = "block";
     
-    // Now show what is being stored.
-    showStorage();
+    
+    //Ask for system to build new DIV and populate it with several P (paragraphs) and an image based on selection.
+    CreateDiv("receipt", myKey);
+    CreateP(myKey,"Category: " + category);
+    CreateP(myKey,"MPAA Classification: " + mpaaClassification);
+    CreateP(myKey,"Movie Title: " + movieTitle);
+    CreateP(myKey,"Copies orderd: " + copiesNeeded);
+    // If movie was in theateres report it using common English.
+    if (wasInTheaters){CreateP(myKey, "This movie was in theaters.");} else {CreateP(myKey, "This movie was not in theaters.");}
+    CreateP(myKey, "Purchased on: " + releaseDate);
+    CreateP(myKey, "COMMENTS: " + tComment);
+    
+    // Ask for system to build new image tag with proper image for the users selection.
+    
+
+    
+    
+    
+    
+    
+    
+
+
+
+
     
 } // END saveForm function
+
+
+// Make a new div tag in HTML for specified parent (theParent)
+function CreateDiv (theParentId, inKey){
+    var mainDoc = document.getElementById(theParentId);
+    var makeDiv = document.createElement("div");
+    makeDiv.setAttribute("id",inKey);
+    // Set the new div inside of the receipt fieldset.
+    mainDoc.appendChild(makeDiv);
+}
+
+// Creates a paragraph inside of an html tag with the id of theKey.
+function CreateP(theKey, newText){
+    var myDiv   = document.getElementById(theKey);
+    var newP    = document.createElement("p");
+    var myText  = document.createTextNode(newText);
+    newP.appendChild(myText);
+    // Set the new paragraph inside of the div here.
+    myDiv.appendChild(newP);
+}
+
+// Creates an image inside of my div tag.
+function CreateImg(theKey, url, altText){
+    var myImage = document.createElement("img");
+    var myDiv   = document.getElementById(theKey);
+    myImage.setAttribute("id",theKey);
+    myImage.setAttribute("url",url);
+    myImage.setAttribute("alt", altText);
+    // Set the new image inside of the div here.
+    myDiv.appendChild(myImage);
+}
+
 
 
 // ====================================================================================================================

@@ -54,14 +54,6 @@ li {
     margin-left: -40px;
 }
 
-div#menuEnd {
-    width: 328px;
-    height: 217px;
-    margin-top: -181px;
-    margin-left: -10px;
-    background: url(../img/baseImage.jpg);
-}
-
 /* BUTTONS ON INDEX.HTML */
 img#downloadCat {
     margin-top: -5px;
@@ -95,8 +87,8 @@ fieldset#main {
 } /* END fieldset main */
 
 fieldset#receipt {
-    width: 306px;
-    background: url(../img/receipt.jpg);
+    display: none;
+    width: 308px;
     overflow: hidden;
 } /* END fieldset second */
 
@@ -195,13 +187,16 @@ input#releaseDate {
 
 /* ====================================================================================
    RECEIPT CONTROL
-   ==================================================================================== -->
+   = =================================================================================== */
+
+div {
+    border: 1px double gray;
+}
 
 /* Setup the receipt, but keep it hidden until needed. */
 #receipt {
-    visibility: hidden;
     margin-left: -12px;
-    background-image: url('../img/receipt.jpg');
+    background-color: #d0e9d5;
     font-family: courier;
     font-size: 12px;
 }
