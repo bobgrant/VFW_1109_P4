@@ -28,7 +28,6 @@ window.onload = runStartup();
 // ====================================================================================================================
 
 function runStartup(){
-
     populateCategory (); // Fill category drop down box with options.  
     autoFillDate(); // Set date field to todays date.
     document.getElementById('category').focus(); // Set focus to first input field
@@ -144,7 +143,7 @@ function saveData(){
     var myKey               = myYear + "" + myMonth + "" + myDay + "" + myHours + "" + myMinutes + "" + mySeconds;
     // Put all data saved from form into array to be saved all at once.
     var myArray             = [category,mpaaClassification,movieTitle,copiesNeeded,wasInTheaters,releaseDate,tComment];
-    
+    var outArray            = myArray.join(";");
     
     // Check to see if user changed shipping instructions from the default and if not
     // confirm they want them the way they are.
@@ -189,60 +188,65 @@ function saveData(){
     } // END for i=2
     
  // =================================================================================================================
-//  S A V E   D A T A   T O   L O C A L   S T O R A G E   A N D   D I S P L A Y   I N   N E W   D I V   T A G. 
+//  S A V E   D A T A   T O   L O C A L   S T O R A G E. 
 // =================================================================================================================   
 
     //Save data to local storage.
     //Calculate YYYY:MM:DD:HH:MM:SS to generage key and then put everything into an array.
  
-    localStorage.setItem(myKey,myArray);
+    localStorage.setItem(myKey,outArray);
+    
+        // Show addition.
+        CreateDiv("receipt", myKey);
+        CreateP(myKey,"Category: " + category);
+        CreateP(myKey,"MPAA Classification: " + mpaaClassification);
+        CreateP(myKey,"Movie Title: " + movieTitle);
+        CreateP(myKey,"Copies orderd: " + copiesNeeded);
+        
+        // If movie was in theateres report it using common English.
+        if (wasInTheaters == "on"){
+            alert("wasin");
+            CreateP(myKey, "This movie was in theaters.");
+        } else {
+            CreateP(myKey, "This movie was not in theaters.");
+          };
 
-    // Show fieldset#Receipt so that saved entries show up.
-    document.getElementById('receipt').style.display = "block";
-    
-    
-    //Ask for system to build new DIV and populate it with several P (paragraphs) and an image based on selection.
-    CreateDiv("receipt", myKey);
-    CreateP(myKey,"Category: " + category);
-    CreateP(myKey,"MPAA Classification: " + mpaaClassification);
-    CreateP(myKey,"Movie Title: " + movieTitle);
-    CreateP(myKey,"Copies orderd: " + copiesNeeded);
-    // If movie was in theateres report it using common English.
-    if (wasInTheaters){CreateP(myKey, "This movie was in theaters.");} else {CreateP(myKey, "This movie was not in theaters.");}
-    CreateP(myKey, "Purchased on: " + releaseDate);
-    CreateP(myKey, "COMMENTS: " + tComment);
-    
-    // Determine which image to use based on mpaaClassification.
-    switch (mpaaClassification){
-        case "(G) Children's":
-            CreateImg(myKey, "img/g.jpg","Rated G");
-            break;
-        case ("(PG-13) Parental Guidance 13yrs."):
-            CreateImg(myKey, "img/pg13.jpg", "Rated: PG13");
-            break;
-        case ("(R) Restricted"):
-            CreateImg(myKey, "img/r.jpg", "Rated: R");
-            break;
-        case("(NC-17) No one under 17yrs."):
-            CreateImg(myKey, "img/NC17.jpg", "Rated: NC17");
-            break;
-        case("(NR) Not rated"):
-            CreateImg(myKey, "img/NR.jpg", "This movie is not rated");
-            break;
-    }
-    
+        CreateP(myKey, "Purchased on: " + releaseDate);
+        CreateP(myKey, "COMMENTS: " + tComment);
 
-    
-    
-    
-    
-    
-    
+        // Determine which image to use based on mpaaClassification.
+        switch (mpaaClassification){
+            case "(G) Children's":
+                CreateImg(myKey, "img/g.jpg","Rated G");
+                break;
+            case ("(PG-13) Parental Guidance 13yrs."):
+                CreateImg(myKey, "img/pg13.jpg", "Rated: PG13");
+                break;
+            case ("(R) Restricted"):
+                CreateImg(myKey, "img/r.jpg", "Rated: R");
+                break;
+            case("(NC-17) No one under 17yrs."):
+                CreateImg(myKey, "img/NC17.jpg", "Rated: NC17");
+                break;
+            case("(NR) Not rated"):
+                CreateImg(myKey, "img/NR.jpg", "This movie is not rated");
+                break;
+        }
 
-
-
-
+        // Put paragraph under image to create a space.
+        CreateP(myKey, "");
     
+        // Create Delete hyperlink on receipt.
+        CreateDelete(myKey);
+
+        // Put paragraph under image to create a space.
+        CreateP(myKey, "");    
+    
+        // Create Edit hyperlink on receipt.    
+        CreateEdit(myKey); 
+    
+        location.reload(true);
+        
 } // END saveForm function
 
 
@@ -276,83 +280,139 @@ function CreateImg(theKey, url, altText){
     myDiv.appendChild(myImage);
 }
 
+function CreateDelete(theKey){
+    var myA     = document.createElement("a");
+    var myDiv   = document.getElementById(theKey);
+    myA.setAttribute("href","JavaScript:DeleteInternal(" + theKey + ")");
+    var myText  = document.createTextNode("Delete Item      ");
+    myA.appendChild(myText);
+    myDiv.appendChild(myA);
+    
+}
 
+
+function CreateEdit(theKey){
+    var myA     = document.createElement("a");
+    var myDiv   = document.getElementById(theKey);
+    myA.setAttribute("href","JavaScript:EditInternal(" + theKey +")");
+    var myText  = document.createTextNode("Edit Item");
+    myA.appendChild(myText);
+    myDiv.appendChild(myA);
+}
+
+
+function RemoveAllChildren(theParent){
+    while (theParent.hasChildNodes()) {
+    theParent.removeChild(theParent.lastChild);
+}
+}
 
 // ====================================================================================================================
 // Show Storage 
 // ====================================================================================================================
 
 function showStorage(){
-    var category            = localStorage.getItem('storeCategory');
-    var mpaaClassification  = localStorage.getItem('storeMpaaClassification');
-    var movieTitle          = localStorage.getItem('storeMovieTitle');
-    var copiesNeeded        = localStorage.getItem('storeCopiesNeeded');
-    var wasInTheaters       = localStorage.getItem('storeWasInTheaters');
-    var releaseDate         = localStorage.getItem('storeReleaseDate');
-    var tComment            = localStorage.getItem('storeTComment');
-    var counter             = 0;
-    // Set variable status of this data for alert box notification.
-    if (wasInTheaters == "on") {boxOffice = "Yes";} else {boxOffice = "No";}
-    
-    var pageArray = [
-      category,
-      mpaaClassification,
-      movieTitle,
-      copiesNeeded,
-      wasInTheaters,
-      releaseDate,
-      tComment  
-    ];
 
-    // Count length of each array entry to see if entry is greater than 6 which is all commas.
-    for (i = 0; i < pageArray.length; i++){
-        counter = counter + pageArray[i].length;
-    } // END i loop
+    var category;
+    var mpaaClassification;
+    var movieTitle;
+    var copiesNeeded;
+    var wasInTheaters;
+    var purchaseDate;
+    var tComment;
     
-    if (counter < 7) {return false;} // exits function if no data existed in local storage.
+    var myDate              = new Date();
+    var myYear              = myDate.getFullYear();
+    var myMonth             = myDate.getMonth();
+    var myDay               = myDate.getDate();
+    var myHours             = myDate.getHours();
+    var myMinutes           = myDate.getMinutes();
+    var mySeconds           = myDate.getSeconds();
+    // Generate unique key based on YYYYMMDDHHMMSS
+    var myKey = myDate + "" + myYear + "" + myMonth + "" + myDay + "" + myHours + "" + myMinutes + "" + mySeconds;
     
-    //Continues here because counter shows data was found > 6.
-    // Enable clear storage link because saved data exists.
-    document.getElementById('clearLocal').style.visibility = "visible";
-    // Hide the form so the only this visible is the Clear local storage link and the header.
-    document.getElementById('paper').style.display = "none";
+    
+    // Check to see if internal storage has any data and if not get out of here.
 
-    //  Put text on receipt
-    document.getElementById('receiptCategory').innerHTML = "Category: " + category;
     
-    // Put MPAA Classification in short form on receipt
-    if (mpaaClassification == "(G) Children's"){document.getElementById('receiptMpaaClassification').innerHTML = "Rated: G";}
-    if (mpaaClassification == "(PG-13) Parental Guidance 13yrs."){document.getElementById('receiptMpaaClassification').innerHTML = "Rated: PG13";}
-    if (mpaaClassification == "(R) Restricted"){document.getElementById('receiptMpaaClassification').innerHTML = "Rated: R";}
-    if (mpaaClassification == "(NC-17) No one under 17yrs."){document.getElementById('receiptMpaaClassification').innerHTML = "Rated: NC-17";}
-    if (mpaaClassification == "(NR) Not rated"){document.getElementById('receiptMpaaClassification').innerHTML = "Rated: Not Rated";}
+    for (i = 0; i<localStorage.length;i++){
+        myKey   = localStorage.key(i);
+        var myValue = localStorage.getItem(myKey);
+
+        
+        // Split (myValue) so that I can move each item into proper variables.
+        myValue = myValue.split(';');
+        
+        category            = myValue[0];
+        mpaaClassification  = myValue[1];
+        movieTitle          = myValue[2];
+        copiesNeeded        = myValue[3];
+        wasInTheaters       = myValue[4];
+        purchaseDate        = myValue[5];
+        tComment            = myValue[6];
+
+
+        
+// =====================================================================================================================
+// P O P U L A T E   F O R M   W I T H   I N T E R N A L   S T O R A G E
+// =====================================================================================================================
+
     
-    document.getElementById('receiptMovieTitle').innerHTML = "Title: " + movieTitle;
-    document.getElementById('receiptCopiesNeeded').innerHTML = "Quantity on order: " + copiesNeeded;
-    if (wasInTheaters == "on"){
-        document.getElementById('receiptWasInTheaters').innerHTML = "This item was was in theaters.";
-    } else {
-        document.getElementById('receiptWasInTheaters').innerHTML = "This item was not in theaters.";
-    }
-    document.getElementById('receiptReleaseDate').innerHTML = "Purchase date: " + releaseDate;
+        //Ask for system to build new DIV and populate it with several P (paragraphs) and an image based on selection.
+        CreateDiv("receipt", myKey);
+        CreateP(myKey,"Category: " + category);
+        CreateP(myKey,"MPAA Classification: " + mpaaClassification);
+        CreateP(myKey,"Movie Title: " + movieTitle);
+        CreateP(myKey,"Copies orderd: " + copiesNeeded);
+
+        // If movie was in theateres report it using common English.
+        if (wasInTheaters){CreateP(myKey, "This movie was in theaters.");} else {CreateP(myKey, "This movie was not in theaters.");}
+        CreateP(myKey, "Purchased on: " + purchaseDate);
+        CreateP(myKey, "COMMENTS: " + tComment);
     
-    // Only put shipping instructions on receipt if user typed some in.
-    if (tComment.length > 0 && tComment != "null"){
-        document.getElementById('receiptComments').innerHTML = "Shipping instructions:<br/>" + tComment;
-    } else {
-        document.getElementById('receiptComments').innerHTML = "Standard shipping.";
-    }
+        // Determine which image to use based on mpaaClassification.
+        switch (mpaaClassification){
+            case "(G) Children's":
+                CreateImg(myKey, "img/g.jpg","Rated G");
+                break;
+            case ("(PG-13) Parental Guidance 13yrs."):
+                CreateImg(myKey, "img/pg13.jpg", "Rated: PG13");
+                break;
+            case ("(R) Restricted"):
+                CreateImg(myKey, "img/r.jpg", "Rated: R");
+                break;
+            case("(NC-17) No one under 17yrs."):
+                CreateImg(myKey, "img/NC17.jpg", "Rated: NC17");
+                break;
+            case("(NR) Not rated"):
+                CreateImg(myKey, "img/NR.jpg", "This movie is not rated");
+                break;
+
+    }// END for i < internalStorage.length.
+
+    // Put paragraph under image to create a space.
+    CreateP(myKey, "");
     
-    // Put image on receipt
-    if (mpaaClassification == "(G) Children's") {document.getElementById('dvdPic').src = ratedG.src;}
-    if (mpaaClassification == "(PG-13) Parental Guidance 13yrs."){document.getElementById('dvdPic').src = ratedPG13.src;}
-    if (mpaaClassification == "(R) Restricted"){document.getElementById('dvdPic').src = ratedR.src;}
-    if (mpaaClassification == "(NC-17) No one under 17yrs."){document.getElementById('dvdPic').src = ratedNC17.src;}
-    if (mpaaClassification == "(NR) Not rated"){document.getElementById('dvdPic').src = ratedNR.src;}
+    // Create Delete hyperlink on receipt.
+    CreateDelete(myKey);
+
+    // Put paragraph under image to create a space.
+    CreateP(myKey, "");    
     
-//  Show receipt
+    // Create Edit hyperlink on receipt.    
+    CreateEdit(myKey);
+
+
     
-    document.getElementById('receipt').style.visibility = "visible";
+
+        }
+    
+    
+    
+    
+        // Show fieldset#Receipt so that saved entries show up.
+    document.getElementById('receipt').style.display = "block";
+    
 } // END showStorage function
 
 
