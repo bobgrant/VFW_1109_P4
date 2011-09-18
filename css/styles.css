@@ -92,6 +92,10 @@ fieldset#receipt {
     overflow: hidden;
 } /* END fieldset second */
 
+fieldset#receipt div {
+    background-color: white;
+}
+
 /* Setup header with graphic */
 header#titlebar {                          
     font-size: 12px;                       
@@ -201,6 +205,9 @@ div {
     font-size: 12px;
 }
 
+#orderTitle {
+    text-align: center;
+}
 
 /* Bobs DVD Superstore */
 #receiptHeader {

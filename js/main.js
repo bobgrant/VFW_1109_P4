@@ -212,7 +212,24 @@ function saveData(){
     CreateP(myKey, "Purchased on: " + releaseDate);
     CreateP(myKey, "COMMENTS: " + tComment);
     
-    // Ask for system to build new image tag with proper image for the users selection.
+    // Determine which image to use based on mpaaClassification.
+    switch (mpaaClassification){
+        case "(G) Children's":
+            CreateImg(myKey, "img/g.jpg","Rated G");
+            break;
+        case ("(PG-13) Parental Guidance 13yrs."):
+            CreateImg(myKey, "img/pg13.jpg", "Rated: PG13");
+            break;
+        case ("(R) Restricted"):
+            CreateImg(myKey, "img/r.jpg", "Rated: R");
+            break;
+        case("(NC-17) No one under 17yrs."):
+            CreateImg(myKey, "img/NC17.jpg", "Rated: NC17");
+            break;
+        case("(NR) Not rated"):
+            CreateImg(myKey, "img/NR.jpg", "This movie is not rated");
+            break;
+    }
     
 
     
@@ -253,7 +270,7 @@ function CreateImg(theKey, url, altText){
     var myImage = document.createElement("img");
     var myDiv   = document.getElementById(theKey);
     myImage.setAttribute("id",theKey);
-    myImage.setAttribute("url",url);
+    myImage.setAttribute("src",url);
     myImage.setAttribute("alt", altText);
     // Set the new image inside of the div here.
     myDiv.appendChild(myImage);
