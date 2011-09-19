@@ -207,7 +207,6 @@ function saveData(){
         
         // If movie was in theateres report it using common English.
         if (wasInTheaters == "on"){
-            alert("wasin");
             CreateP(myKey, "This movie was in theaters.");
         } else {
             CreateP(myKey, "This movie was not in theaters.");
@@ -374,9 +373,11 @@ function ReSaveData(theKey){
     // Change text on button back to normal.
     document.getElementById("subButton").value = "Add DVD to cart";
     
-    InternalStorage.setItem(theKey, myOutputArray);
+    localStorage.setItem(theKey, myOutputArray);
     
     alert("Your changes have been saved.");
+    
+    location.reload(true);
     
     
     
