@@ -198,6 +198,8 @@ function saveData(){
     
         // Show addition.
         CreateDiv("receipt", myKey);
+        CreateP(myKey, "Transaction #: " + myKey);
+        CreateP(myKey, "");
         CreateP(myKey,"Category: " + category);
         CreateP(myKey,"MPAA Classification: " + mpaaClassification);
         CreateP(myKey,"Movie Title: " + movieTitle);
@@ -247,7 +249,7 @@ function saveData(){
     
         location.reload(true);
         
-} // END saveForm function
+} // END saveData() function
 
 
 // Make a new div tag in HTML for specified parent (theParent)
@@ -360,6 +362,8 @@ function showStorage(){
     
         //Ask for system to build new DIV and populate it with several P (paragraphs) and an image based on selection.
         CreateDiv("receipt", myKey);
+        CreateP(myKey, "Transaction #: " + myKey);
+        CreateP(myKey, "");
         CreateP(myKey,"Category: " + category);
         CreateP(myKey,"MPAA Classification: " + mpaaClassification);
         CreateP(myKey,"Movie Title: " + movieTitle);
