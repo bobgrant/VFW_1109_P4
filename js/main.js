@@ -141,9 +141,7 @@ function saveData(){
     var mySeconds           = myDate.getSeconds();
     // Generate unique key based on YYYYMMDDHHMMSS
     var myKey               = myYear + "" + myMonth + "" + myDay + "" + myHours + "" + myMinutes + "" + mySeconds;
-    // Put all data saved from form into array to be saved all at once.
-    var myArray             = [category,mpaaClassification,movieTitle,copiesNeeded,wasInTheaters,releaseDate,tComment];
-    var outArray            = myArray.join(";");
+
     
     // Check to see if user changed shipping instructions from the default and if not
     // confirm they want them the way they are.
@@ -183,13 +181,32 @@ function saveData(){
             document.forms["paper"][department[i]].style.border = "1px solid gray";
             document.getElementById(department[i]).style.background = "white";
             document.forms["paper"][department[i]].value = response;
+
+            
+            // Make sure variable is updated as well so it saves correctly to localStorage.
+
+            switch (department[i]){
+                case ("releaseDate"):
+                    releaseDate = response;
+                    break;
+                case ("movieTitle"):
+                    movieTitle = response;
+                    break;
+            } // END Switch
+            
+            
+            // Go back one to check what was just entered.
             i--;
         } // END if deptKey
     } // END for i=2
-    
+
  // =================================================================================================================
 //  S A V E   D A T A   T O   L O C A L   S T O R A G E. 
 // =================================================================================================================   
+
+    // Put all data saved from form and edited during validation into array to be saved all at once.
+    var myArray             = [category,mpaaClassification,movieTitle,copiesNeeded,wasInTheaters,releaseDate,tComment];
+    var outArray            = myArray.join(";");
 
     //Save data to local storage.
     //Calculate YYYY:MM:DD:HH:MM:SS to generage key and then put everything into an array.
@@ -240,7 +257,7 @@ function saveData(){
         // Create Delete hyperlink on receipt.
         CreateLinks(myKey);
 
-        // Put paragraph under image to create a space.
+        // Put paragraph under links to create a space.
         CreateP(myKey, "");    
     
         location.reload(true);
@@ -321,7 +338,7 @@ function EditInternal(theKey){
     var purchaseDate        = myArray[5];
     var tComment            = myArray[6];
     
-    document.getElementById("main").style.background = "#ead1d1";
+    document.getElementById("main").style.backgroundImage="url('img/background_edit.jpg')";
     
     // Repopulate form with saved information.
     document.getElementById("category").value = category;
@@ -436,14 +453,21 @@ function showStorage(){
         CreateP(myKey, "Transaction #: " + myKey);
         CreateP(myKey, "");
         CreateP(myKey,"Category: " + category);
-        CreateP(myKey,"MPAA Classification: " + mpaaClassification);
+        CreateP(myKey,"Movie Rating: " + mpaaClassification);
         CreateP(myKey,"Movie Title: " + movieTitle);
-        CreateP(myKey,"Copies orderd: " + copiesNeeded);
+        CreateP(myKey,"Copies ordered: " + copiesNeeded);
 
         // If movie was in theateres report it using common English.
         if (wasInTheaters){CreateP(myKey, "This movie was in theaters.");} else {CreateP(myKey, "This movie was not in theaters.");}
         CreateP(myKey, "Purchased on: " + purchaseDate);
-        CreateP(myKey, "COMMENTS: " + tComment);
+        
+        // If no shipping instructions are typed use "Standard Shipping".
+        if (tComment) {
+            CreateP(myKey, "Shipping Instructions: " + tComment);
+        } else {
+            CreateP(myKey, "Shipping Instructions: 'Standard Shipping'");  
+          }
+        
     
         // Determine which image to use based on mpaaClassification.
         switch (mpaaClassification){

@@ -89,11 +89,17 @@ fieldset#main {
 fieldset#receipt {
     display: none;
     width: 308px;
+    
     overflow: hidden;
 } /* END fieldset second */
 
+
 fieldset#receipt div {
     background-color: white;
+}
+
+fieldset > div {
+    background-image: url('../img/receipt.jpg');
 }
 
 /* Setup header with graphic */
@@ -206,7 +212,15 @@ div {
 }
 
 #orderTitle {
+    font-size: 18px;
+    font: bold;
+    color: #0b6801;
     text-align: center;
+    margin-bottom: -10px;
+}
+
+div#orderHeader {
+    background-image: url('../img/orderHeader.jpg');
 }
 
 
@@ -254,4 +268,10 @@ p#successful {
 
 img#ratingImage {
     margin-left: 100px;
+}
+
+p#clearLink {
+    font-size: 12px;
+    font: bold;
+    text-align: center;
 }
