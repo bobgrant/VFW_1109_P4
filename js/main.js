@@ -314,7 +314,6 @@ function RemoveAllChildren(theParent){
 // ====================================================================================================================
 
 function showStorage(){
-
     var category;
     var mpaaClassification;
     var movieTitle;
@@ -340,7 +339,7 @@ function showStorage(){
     for (i = 0; i<localStorage.length;i++){
         myKey   = localStorage.key(i);
         var myValue = localStorage.getItem(myKey);
-
+        
         
         // Split (myValue) so that I can move each item into proper variables.
         myValue = myValue.split(';');
@@ -392,30 +391,26 @@ function showStorage(){
                 CreateImg(myKey, "img/NR.jpg", "This movie is not rated");
                 break;
 
-    }// END for i < internalStorage.length.
-
-    // Put paragraph under image to create a space.
-    CreateP(myKey, "");
-    
-    // Create Delete hyperlink on receipt.
-    CreateDelete(myKey);
-
-    // Put paragraph under image to create a space.
-    CreateP(myKey, "");    
-    
-    // Create Edit hyperlink on receipt.    
-    CreateEdit(myKey);
+        }// Switch
 
 
+            // Put paragraph under image to create a space.
+            CreateP(myKey, "");
     
+            // Create Delete hyperlink on receipt.
+            CreateDelete(myKey);
 
-        }
+            // Put paragraph under image to create a space.
+            CreateP(myKey, "");    
     
-    
-    
-    
-        // Show fieldset#Receipt so that saved entries show up.
-    document.getElementById('receipt').style.display = "block";
+            // Create Edit hyperlink on receipt.    
+            CreateEdit(myKey);
+
+
+            // Show fieldset#Receipt so that saved entries show up.
+            document.getElementById('receipt').style.display = "block";    
+
+        } //END for i < internalStorage.length.
     
 } // END showStorage function
 
@@ -430,7 +425,7 @@ function clearStorage(){
     document.getElementById('paper').style.display = "block";
     
     // Hide receipt
-    document.getElementById('receipt').style.visibility = "hidden";
+    document.getElementById('receipt').style.display = "none";
 } // END clearStorage function
 
 
