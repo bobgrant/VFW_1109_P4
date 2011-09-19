@@ -271,7 +271,7 @@ function CreateP(theKey, newText){
 function CreateImg(theKey, url, altText){
     var myImage = document.createElement("img");
     var myDiv   = document.getElementById(theKey);
-    myImage.setAttribute("id",theKey);
+    myImage.setAttribute("id","ratingImage");
     myImage.setAttribute("src",url);
     myImage.setAttribute("alt", altText);
     // Set the new image inside of the div here.
@@ -321,6 +321,8 @@ function EditInternal(theKey){
     var purchaseDate        = myArray[5];
     var tComment            = myArray[6];
     
+    document.getElementById("main").style.background = "#ead1d1";
+    
     // Repopulate form with saved information.
     document.getElementById("category").value = category;
     document.getElementById("mpaaClassification").value = mpaaClassification;
@@ -343,7 +345,12 @@ function EditInternal(theKey){
     // Change text on button
     var myButton = document.getElementById("subButton");
         myButton.value = "Save changes";
+
+    // Jump window to top of screen to form named main.
+    window.location.hash="main";
 }// END EditInternal function
+
+
 
 function ReSaveData(theKey){
     
