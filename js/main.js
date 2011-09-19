@@ -238,13 +238,10 @@ function saveData(){
         CreateP(myKey, "");
     
         // Create Delete hyperlink on receipt.
-        CreateDelete(myKey);
+        CreateLinks(myKey);
 
         // Put paragraph under image to create a space.
         CreateP(myKey, "");    
-    
-        // Create Edit hyperlink on receipt.    
-        CreateEdit(myKey); 
     
         location.reload(true);
         
@@ -281,33 +278,27 @@ function CreateImg(theKey, url, altText){
     myDiv.appendChild(myImage);
 }
 
-function CreateDelete(theKey){
+function CreateLinks(theKey){
     var myA     = document.createElement("a");
+    var myB     = document.createElement("a");
     var myDiv   = document.getElementById(theKey);
-    myA.setAttribute("href","JavaScript:DeleteInternal(" + theKey + ")");
-    var myText  = document.createTextNode("Delete Item");
-    myA.appendChild(myText);
-    myDiv.appendChild(myA);
+    // First href A
+        myA.setAttribute("href","JavaScript:DeleteInternal(" + theKey + ")");
+        myA.setAttribute("id", "myA");
+        var myTexta  = document.createTextNode("Delete Item");
+        myA.appendChild(myTexta);
     
-}
-
-
-function CreateEdit(theKey){
-    var myA     = document.createElement("a");
-    var myDiv   = document.getElementById(theKey);
-    myA.setAttribute("href","JavaScript:EditInternal(" + theKey +")");
-    var myText  = document.createTextNode("Edit Item");
-    myA.appendChild(myText);
+    // Second href B
+        myB.setAttribute("href","JavaScript:EditInternal(" + theKey + ")");
+        myB.setAttribute("id", "myB");
+        var myTextb  = document.createTextNode("Edit Item");
+        myB.appendChild(myTextb);
+    
     myDiv.appendChild(myA);
-}
+    myDiv.appendChild(myB);
+    
+} // END CreateLinks function.
 
-
-
-function RemoveAllChildren(theParent){
-    while (theParent.hasChildNodes()) {
-        theParent.removeChild(theParent.lastChild);
-    }
-} // END function RemoveAllChildren
 
 function DeleteInternal(theKey){
     var answer = confirm("Are you sure you wish to delete this record?");
@@ -472,14 +463,10 @@ function showStorage(){
             CreateP(myKey, "");
     
             // Create Delete hyperlink on receipt.
-            CreateDelete(myKey);
+            CreateLinks(myKey);
 
             // Put paragraph under image to create a space.
             CreateP(myKey, "");    
-    
-            // Create Edit hyperlink on receipt.    
-            CreateEdit(myKey);
-
 
             // Show fieldset#Receipt so that saved entries show up.
             document.getElementById('receipt').style.display = "block";    
