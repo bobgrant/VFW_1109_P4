@@ -512,6 +512,9 @@ function showStorage(){
 // ========================================================================================================================
 
 function clearStorage(){
+    var response = confirm("Are you sure?" + "\n" + "All saved orders will be deleted.");
+    if (!(response)) {return false;}
+    
     localStorage.clear();
     document.getElementById('clearLocal').style.visibility = "hidden";
     document.getElementById('paper').style.display = "block";
