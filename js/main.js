@@ -286,7 +286,7 @@ function CreateDelete(theKey){
     var myA     = document.createElement("a");
     var myDiv   = document.getElementById(theKey);
     myA.setAttribute("href","JavaScript:DeleteInternal(" + theKey + ")");
-    var myText  = document.createTextNode("Delete Item      ");
+    var myText  = document.createTextNode("Delete Item");
     myA.appendChild(myText);
     myDiv.appendChild(myA);
     
@@ -303,10 +303,16 @@ function CreateEdit(theKey){
 }
 
 
+
 function RemoveAllChildren(theParent){
     while (theParent.hasChildNodes()) {
-    theParent.removeChild(theParent.lastChild);
-}
+        theParent.removeChild(theParent.lastChild);
+    }
+} // END function RemoveAllChildren
+
+function DeleteInternal(theKey){
+    localStorage.removeItem(theKey);
+    window.location.reload();
 }
 
 // ====================================================================================================================
