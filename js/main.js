@@ -311,8 +311,75 @@ function RemoveAllChildren(theParent){
 } // END function RemoveAllChildren
 
 function DeleteInternal(theKey){
-    localStorage.removeItem(theKey);
-    window.location.reload();
+    var answer = confirm("Are you sure you wish to delete this record?");
+    // Delete if user confirmed deletion.
+    if (answer){
+        localStorage.removeItem(theKey);
+        window.location.reload();
+    } // END if answer.
+} // END DeleteInternal function
+
+function EditInternal(theKey){
+    // Load internal storage and split it apart so it can be put back into the form.
+    var myLoadedArray       = localStorage.getItem(theKey);
+    var myArray             = myLoadedArray.split(";");
+    var category            = myArray[0];
+    var mpaaClassification  = myArray[1];
+    var movieTitle          = myArray[2];
+    var copiesNeeded        = myArray[3];
+    var wasInTheaters       = myArray[4];
+    var purchaseDate        = myArray[5];
+    var tComment            = myArray[6];
+    
+    // Repopulate form with saved information.
+    document.getElementById("category").value = category;
+    document.getElementById("mpaaClassification").value = mpaaClassification;
+    document.getElementById("movieTitle").value = movieTitle;
+    document.getElementById("copiesNeeded").value = copiesNeeded;
+    // Update the TextNode that shows Copies: 1 or Copies: 2 depending on range.
+    updateCopies();
+    
+    // if wasInTheaters==on then make sure I checkbox it.
+    if (wasInTheaters == "on") {
+        document.getElementById("wasInTheaters").setAttribute("checked","checked");
+    } // End if wasInTheaters
+    
+    document.getElementById("releaseDate").value = purchaseDate;
+    document.getElementById("tcomment").value = tComment;
+        
+    // Change where button click takes user
+    document.getElementById("paper").setAttribute("action","JavaScript:ReSaveData(" + theKey + ")");
+    
+    // Change text on button
+    var myButton = document.getElementById("subButton");
+        myButton.value = "Save changes";
+}// END EditInternal function
+
+function ReSaveData(theKey){
+    
+    // Convert form data back into variables.    
+    var category            = document.getElementById("category").value;
+    var mpaaClassification  = document.getElementById("mpaaClassification").value;
+    var movieTitle          = document.getElementById("movieTitle").value;
+    var copiesNeeded        = document.getElementById("copiesNeeded").value;
+    var wasInTheaters       = document.getElementById("wasInTheaters").value;
+    var purchaseDate        = document.getElementById("releaseDate").value;
+    var tComment            = document.getElementById("tcomment").value;
+    var myArray             = [category,mpaaClassification,movieTitle,copiesNeeded,wasInTheaters,purchaseDate,tComment];
+    var myOutputArray       = myArray.join(";");
+    
+    // Change where button takes user back to normal
+    document.getElementById("paper").setAttribute("actio","JavaScript:saveData()");
+    
+    // Change text on button back to normal.
+    document.getElementById("subButton").value = "Add DVD to cart";
+    
+    InternalStorage.setItem(theKey, myOutputArray);
+    
+    alert("Your changes have been saved.");
+    
+    
+    
 }
 
 // ====================================================================================================================
