@@ -247,7 +247,7 @@ function saveData(){
                 CreateImg(myKey, "img/NC17.jpg", "Rated: NC17");
                 break;
             case("(NR) Not rated"):
-                CreateImg(myKey, "img/NR.jpg", "This movie is not rated");
+                CreateImg(myKey, "img/nr.jpg", "This movie is not rated");
                 break;
         }
 
@@ -484,7 +484,7 @@ function showStorage(){
                 CreateImg(myKey, "img/NC17.jpg", "Rated: NC17");
                 break;
             case("(NR) Not rated"):
-                CreateImg(myKey, "img/NR.jpg", "This movie is not rated");
+                CreateImg(myKey, "img/nr.jpg", "This movie is not rated");
                 break;
 
         }// Switch
