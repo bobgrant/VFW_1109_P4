@@ -7,11 +7,11 @@
                                                                            */
 
 
-/* INDEX.HTML: Menu items*/
+/* =====================================================================================================
+   INDEX.HTML
+   ===================================================================================================== */
 
-body#index {
-    height: 400px;
-}
+
 
 /* Puts top image where it needs to be */
 div#mainMenu {
@@ -25,6 +25,7 @@ div#mainMenu {
     overflow: hidden;
 }
 
+/* Align Bob's DVD Superstore image */
 img#headerImage {
     margin-top: 20px;
     border: 1px solid white;
@@ -49,34 +50,58 @@ ul#buttons {
     background-repeat: no-repeat;    
 }
 
-/* KEEPS BUTTONS LINED UP ON MIDDLEIMAGE.JPG */
+/* SET LEFT MARGIN FOR ALL BUTTONS ON INDEX.HTML */
 li {
     margin-left: -40px;
 }
 
-/* BUTTONS ON INDEX.HTML */
+/* INDIVIDUAL SETTINGS FOR BUTTONS ON INDEX.HTML */
+
+/* Download Catalog */
 img#downloadCat {
     margin-top: -5px;
 }
 
+/* Request Catalog */
 img#requestCat {
     margin-top: -4px;
 }
 
+/* Order Status */
 img#orderStat {
     margin-top: -1px;
 }
 
+/* Settings */
 img#settings {
     margin-top: -4px;
     margin-left: -1px;
 }
 
+/* Sign out */
 img#signout {
     margin-top: -7px;
 }
-/* END BUTTONS ON INDEX.HTML */
 
+/* Aligns my credits on the index.html bottom right. */
+p#credits {
+    margin-top: 75px;
+    margin-left: 120px;
+    opacity: 0.4;
+}
+
+/* Credits is a hyperlink to my Full Sail email account -- Setup colors so they
+   hover differenlty then all other hyperlinks where opacity was used. */
+a#emailLink:hover {
+    color: black;
+    opacity: 1.9;
+}
+
+/* END INDIVIDUAL SETTINGS FOR BUTTONS ON INDEX.HTML */
+
+/* =====================================================================================================
+   ADDITEM.HTML
+   ===================================================================================================== */
 
 /* Set the background image and parameters of the fieldset */
 fieldset#main {                  
@@ -86,23 +111,8 @@ fieldset#main {
     overflow: hidden;                      
 } /* END fieldset main */
 
-fieldset#receipt {
-    display: none;
-    width: 308px;
-    
-    overflow: hidden;
-} /* END fieldset second */
 
-
-fieldset#receipt div {
-    background-color: white;
-}
-
-fieldset > div {
-    background-image: url('../img/receipt.jpg');
-}
-
-/* Setup header with graphic */
+/* Setup GREEN GRAPHIC header */
 header#titlebar {                          
     font-size: 12px;                       
     height: 50px;                          
@@ -132,7 +142,8 @@ input#wasInTheaters {
     outline: double;                          
     
     /* Hand pointer for cursor */
-    cursor: pointer; 
+    cursor: pointer;
+    
 } /* END input#wasInTheaters */
 
 
@@ -144,8 +155,8 @@ label {
 } /* END label */
 
 
-
-body {               
+body {
+    height: 400px;
     margin-top: 0px;
     margin-left: 10px;
 } /* END body */
@@ -166,7 +177,7 @@ a:active{color: #faf104;}
 } /* END a */
 
 
-/* Make all imput fields see through for uniqueness */
+/* Make all input fields transparent for uniqueness */
 input {
     opacity:0.8;     
 } /* END input */
@@ -184,11 +195,6 @@ textarea#tcomment {
 } /* END textarea#tcomment */
 
 
-/* Hide the clear local link until actual data is stored. */
-a#clearLocal {       
-        visibility: hidden; 
-} /* END a#clearlocal */
-
 /* Setup release date parameters. */
 input#releaseDate {
     margin-top: 20px;
@@ -197,8 +203,21 @@ input#releaseDate {
 
 /* ====================================================================================
    RECEIPT CONTROL
-   = =================================================================================== */
+   ==================================================================================== */
 
+fieldset#receipt {
+    display: none;
+    width: 308px;    
+    overflow: hidden;
+} 
+
+/* Put rustic looking paper texture behind each receipt. */
+fieldset > div {
+    background-image: url('../img/receipt.jpg');
+    background-repeat: no-repeat;
+}
+
+/* Put a nice grey box around each receipt */
 div {
     border: 1px double gray;
 }
@@ -211,33 +230,26 @@ div {
     font-size: 12px;
 }
 
-#orderTitle {
-    font-size: 18px;
-    font: bold;
+/* Header that appears over all receipts that says, "Your orders" */
+p#orderTitle {
     color: #0b6801;
     text-align: center;
     margin-bottom: -10px;
+    font-size: 18px;
+    font: bold;
 }
 
+/* Graphic that loads behind above text in orderTitle. */
 div#orderHeader {
     background-image: url('../img/orderHeader.jpg');
 }
 
 
-/* Bobs DVD Superstore */
+/* Bobs DVD Superstore on top of header that is in orderTitle above. */
 #receiptHeader {
     text-align: center;
     color: black;
     font-size: 10px;
-}
-
-
-/* Put Your order was successfully placed on receipt in bold red lettering */
-p#successful {
-    text-align: center;
-    font-weight: bold;
-    font-size: 12px;
-    color: red;
 }
 
 
@@ -254,11 +266,7 @@ p#successful {
     text-align: center;
 }
 
-#keepReceipt {
-    color: #646865;
-    margin-left: -5px;
-}
-
+/* Delete Item(myA)        Edit Item(myB) links */
 #myA {
     margin-left: 20px;
 }
@@ -266,12 +274,16 @@ p#successful {
     margin-left: 100px;
 }
 
-img#ratingImage {
-    margin-left: 100px;
-}
-
+/* Sets location of Clear Local Storge link on top of all receipts */
 p#clearLink {
     font-size: 12px;
     font: bold;
     text-align: center;
 }
+
+/* Center graphic on receipt */
+fieldset > div > img {
+    margin-left: 100px;
+}
+
+

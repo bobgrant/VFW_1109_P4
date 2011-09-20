@@ -141,8 +141,12 @@ function saveData(){
     var mySeconds           = myDate.getSeconds();
     // Generate unique key based on YYYYMMDDHHMMSS
     var myKey               = myYear + "" + myMonth + "" + myDay + "" + myHours + "" + myMinutes + "" + mySeconds;
+  
+  
+// =================================================================================================================
+// V A L I D A T E    D A T A   F O R    P R O P E R    F O R M A T
+// =================================================================================================================
 
-    
     // Check to see if user changed shipping instructions from the default and if not
     // confirm they want them the way they are.
     if (document.getElementById('tcomment').value == "If not home specify preference for leaving package such as 'on rear porch' or 'do not leave'."){
@@ -151,14 +155,9 @@ function saveData(){
         if (response == false){
             tComment = prompt("Please enter shipping instructions:");
         } // END if !response
-    } // END if tcomment
-  
-  
-// =================================================================================================================
-// V A L I D A T E    D A T A   F O R    P R O P E R    F O R M A T
-// =================================================================================================================
+    } // END if tcomment    
+    
 
-    // Check data in form
     var department  = ["movieTitle","releaseDate"];
     var deptKey     = [/^([0-9a-zA-Z\s\.\!])+([0-9a-zA-Z\s\.\!])*$/,/^[2-9][0-9]{3}[\/-\\][0-9]{2}[\/-\\][0-9]{2}$/];    
     var question    = ["the movie title.","the purchase date (YYYY/MM/DD)"];
@@ -247,7 +246,7 @@ function saveData(){
                 CreateImg(myKey, "img/NC17.jpg", "Rated: NC17");
                 break;
             case("(NR) Not rated"):
-                CreateImg(myKey, "img/NR.jpg", "This movie is not rated");
+                CreateImg(myKey, "img/nr.jpg", "This movie is not rated");
                 break;
         }
 
@@ -484,7 +483,7 @@ function showStorage(){
                 CreateImg(myKey, "img/NC17.jpg", "Rated: NC17");
                 break;
             case("(NR) Not rated"):
-                CreateImg(myKey, "img/NR.jpg", "This movie is not rated");
+                CreateImg(myKey, "img/nr.jpg", "This movie is not rated");
                 break;
 
         }// Switch
@@ -516,11 +515,13 @@ function clearStorage(){
     if (!(response)) {return false;}
     
     localStorage.clear();
-    document.getElementById('clearLocal').style.visibility = "hidden";
+
     document.getElementById('paper').style.display = "block";
     
     // Hide receipt
     document.getElementById('receipt').style.display = "none";
+
+    // I am aware this function does not always return a value -- Thats okay!!!
 } // END clearStorage function
 
 
@@ -545,10 +546,6 @@ function deleteValue(id){
     } // END if id==tcomment
 }
 
-function validateForm(){
-    alert("CODE HERE.");
-    if (document.getElementById("movieTitle").value == "Enter the title of the movie."){
-        alert("Movie title not changed.")
-    }
-}
+
+
 // END OF SCRIPT
