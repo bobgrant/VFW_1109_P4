@@ -360,7 +360,7 @@ function EditInternal(theKey){
     
     // Change text on button
     var myButton = document.getElementById("subButton");
-        myButton.value = "Save changes";
+        myButton.value = "Edit";
 
     // Jump window to top of screen to form named main.
     window.location.hash="main";
