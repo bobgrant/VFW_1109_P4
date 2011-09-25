@@ -243,7 +243,7 @@ function saveData(){
                 CreateImg(myKey, "img/r.jpg", "Rated: R");
                 break;
             case("(NC-17) No one under 17yrs."):
-                CreateImg(myKey, "img/NC17.jpg", "Rated: NC17");
+                CreateImg(myKey, "img/nc17.jpg", "Rated: NC17");
                 break;
             case("(NR) Not rated"):
                 CreateImg(myKey, "img/nr.jpg", "This movie is not rated");
@@ -480,7 +480,7 @@ function showStorage(){
                 CreateImg(myKey, "img/r.jpg", "Rated: R");
                 break;
             case("(NC-17) No one under 17yrs."):
-                CreateImg(myKey, "img/NC17.jpg", "Rated: NC17");
+                CreateImg(myKey, "img/nc17.jpg", "Rated: NC17");
                 break;
             case("(NR) Not rated"):
                 CreateImg(myKey, "img/nr.jpg", "This movie is not rated");
